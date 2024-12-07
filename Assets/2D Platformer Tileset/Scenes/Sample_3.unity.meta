@@ -1,14 +1,7 @@
 fileFormatVersion: 2
-guid: 1e5ccfa708e47f94882d3039e193463c
+guid: f648707566f166a4f8e2c6b95026a5f7
 DefaultImporter:
   externalObjects: {}
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 173155
-  packageName: 2D Platformer Tileset
-  packageVersion: 4.1
-  assetPath: Assets/2D Platformer Tileset/Scenes/Sample_3.unity
-  uploadId: 575983
