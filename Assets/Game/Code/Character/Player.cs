@@ -1,3 +1,4 @@
+using Assets.Game.Code.Effects;
 using UnityEngine;
 
 namespace Assets.Game.Code.Character
@@ -6,6 +7,13 @@ namespace Assets.Game.Code.Character
     {
         private CharacterController characterController;
         private Animator animator;
+
+        public FadeInOut Fade { get; private set; }
+
+        public void Init(FadeInOut fade)
+        {
+            Fade = fade;
+        }
 
         private void Awake()
         {

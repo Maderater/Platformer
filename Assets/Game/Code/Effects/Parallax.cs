@@ -11,7 +11,7 @@ namespace Assets.Game.Code.Effects
         private Camera cam;
         private float startPos;
 
-        private void Awake()
+        private void Start()
         {
             cam = Camera.main;
 

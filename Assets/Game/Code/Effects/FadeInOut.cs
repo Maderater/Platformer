@@ -15,17 +15,6 @@ namespace Assets.Game.Code.Effects
             FadeOut();
         }
 
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.R))
-            {
-                FadeIn(() =>
-                {
-                    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-                });
-            }
-        }
-
         public void FadeIn(Action OnFadeIn)
         {
             StartCoroutine(FadeInCoroutine(OnFadeIn));
