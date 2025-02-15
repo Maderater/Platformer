@@ -10,14 +10,17 @@ namespace Assets.Game.Code.AI
         private Transform[] points;
 
         private Rigidbody2D rb;
+        private Animator animator;
 
         private Transform currentTarget;
         private int currentTargetIndex = 0;
         private Vector2 direction;
+        private bool isAlive = true;
 
         private void Awake()
         {
             rb = GetComponent<Rigidbody2D>();
+            animator = GetComponent<Animator>();
 
             currentTarget = points[currentTargetIndex];
 
@@ -25,6 +28,8 @@ namespace Assets.Game.Code.AI
             {
                 point.parent = null;
             }
+
+            WatchDirection();
         }
 
         private void FixedUpdate()
@@ -34,6 +39,11 @@ namespace Assets.Game.Code.AI
 
         private void Movement()
         {
+            if (!isAlive)
+            {
+                return;
+            }
+
             Vector2 newPosition = Vector2.MoveTowards(rb.position, currentTarget.position, speed * Time.fixedDeltaTime);
 
             rb.MovePosition(newPosition);
@@ -51,9 +61,24 @@ namespace Assets.Game.Code.AI
                 currentTarget = points[currentTargetIndex];
 
                 //Watch direction
-                direction = (Vector2)points[currentTargetIndex].position - rb.position;
-                transform.localScale = new Vector3((direction.x < 0) ? -1 : 1, 1, 1);
+                WatchDirection();
             }
+        }
+
+        private void WatchDirection()
+        {
+            direction = (Vector2)currentTarget.position - rb.position;
+            transform.localScale = new Vector3((direction.x < 0) ? -1 : 1, 1, 1);
+        }
+
+        public void Die()
+        {
+            isAlive = false;
+            animator.SetTrigger("Die");
+
+            GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+
+            Destroy(GetComponent<BoxCollider2D>());
         }
     }
 }
