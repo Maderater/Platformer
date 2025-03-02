@@ -58,5 +58,7 @@ namespace Assets.Game.Code.Character
                 transform.localScale = new Vector3(1, transform.localScale.y, transform.localScale.z);
             }
         }
+
+        public void VelocityToZero() => rb.linearVelocity = Vector2.zero;
     }
 }

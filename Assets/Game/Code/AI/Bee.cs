@@ -1,8 +1,9 @@
+using Assets.Game.Code.Interfaces;
 using UnityEngine;
 
 namespace Assets.Game.Code.AI
 {
-    public class Bee : MonoBehaviour
+    public class Bee : MonoBehaviour, IDieble
     {
         [SerializeField]
         private float speed;
@@ -74,11 +75,11 @@ namespace Assets.Game.Code.AI
         public void Die()
         {
             isAlive = false;
+            gameObject.layer = LayerMask.NameToLayer("EnemyDead");
             animator.SetTrigger("Die");
 
             GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
-
-            Destroy(GetComponent<BoxCollider2D>());
+            GetComponent<BoxCollider2D>().isTrigger = false;
         }
     }
 }
