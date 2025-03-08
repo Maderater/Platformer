@@ -292,4 +292,4 @@ MonoBehaviour:
   points:
   - {fileID: 3811323937856684520}
   - {fileID: 1393751905158766906}
-  speed: 2
+  speed: 2.5
