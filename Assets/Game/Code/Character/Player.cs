@@ -81,7 +81,7 @@ namespace Assets.Game.Code.Character
             }
         }
 
-        private void Die()
+        public void Die()
         {
             isAlive = false;
             animator.SetTrigger("Die");
