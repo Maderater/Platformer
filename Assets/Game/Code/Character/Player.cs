@@ -1,6 +1,7 @@
 using Assets.Game.Code.AI;
 using Assets.Game.Code.Effects;
 using Assets.Game.Code.Interfaces;
+using Assets.Game.Code.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using static UnityEditor.Searcher.SearcherWindow.Alignment;
@@ -19,6 +20,8 @@ namespace Assets.Game.Code.Character
 
         private bool isAlive = true;
 
+        public bool IsInTutorial { get; set; }
+
         public FadeInOut Fade { get; private set; }
 
         public void Init(FadeInOut fade)
@@ -30,6 +33,11 @@ namespace Assets.Game.Code.Character
         {
             characterController = GetComponent<CharacterController>();
             animator = GetComponent<Animator>();
+
+            TutorialHud.Instance.OnTutorialAccept += () =>
+            {
+                IsInTutorial = false;
+            };
         }
 
         private void Update()
@@ -50,7 +58,7 @@ namespace Assets.Game.Code.Character
 
         private void Movement()
         {
-            if (!isAlive) return;
+            if (!isAlive || IsInTutorial) return;
 
             float horizontal = Input.GetAxis("Horizontal"); // -1 to 1
             bool jump = Input.GetKeyDown("space");
@@ -62,7 +70,7 @@ namespace Assets.Game.Code.Character
 
         private void Attack()
         {
-            if (!isAlive) return;
+            if (!isAlive || IsInTutorial) return;
 
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
@@ -83,6 +91,8 @@ namespace Assets.Game.Code.Character
 
         public void Die()
         {
+            if (IsInTutorial) return;
+
             isAlive = false;
             animator.SetTrigger("Die");
             characterController.VelocityToZero();

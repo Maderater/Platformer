@@ -670,9 +670,9 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7447634327971659464}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 1
-  m_BlocksRaycasts: 1
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!114 &2942183889465115446
 MonoBehaviour:
@@ -686,3 +686,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f79b3b2b101a7d48b3f9177e2de79fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tutorialTextBox: {fileID: 5257637192200603187}
