@@ -79,7 +79,7 @@ namespace Assets.Game.Code.AI
             animator.SetTrigger("Die");
 
             GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
-            GetComponent<BoxCollider2D>().isTrigger = false;
+            GetComponent<CircleCollider2D>().isTrigger = false;
         }
     }
 }
