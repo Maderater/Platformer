@@ -1,5 +1,6 @@
 using Assets.Game.Code.Character;
 using Assets.Game.Code.Effects;
+using Assets.Game.Code.UI;
 using UnityEngine;
 
 namespace Assets.Game.Code.Infrastracture
@@ -8,6 +9,10 @@ namespace Assets.Game.Code.Infrastracture
     {
         [SerializeField]
         private GameObject fadeCanvas;
+        [SerializeField]
+        private NextLevel nextLevel;
+        [SerializeField]
+        private GameHud gameHud;
         [Space]
         [SerializeField]
         private GameObject player;
@@ -17,18 +22,29 @@ namespace Assets.Game.Code.Infrastracture
         [SerializeField]
         private GameObject followCamera;
 
+        [Header("Game Stats")]
+        [SerializeField]
+        private int enemyToDefeat;
+
         private FadeInOut fade;
+        private GameObject character;
 
         private void Awake()
         {
             GameObject g = Instantiate(fadeCanvas);
             fade = g.GetComponent<FadeInOut>();
 
-            GameObject p = Instantiate(player, playerPoint.position, Quaternion.identity);
-            p.GetComponent<Player>().Init(fade);
+            character = Instantiate(player, playerPoint.position, Quaternion.identity);
+            character.GetComponent<Player>().Init(fade);
 
             GameObject f = Instantiate(followCamera, playerPoint.position, Quaternion.identity);
-            f.GetComponent<FollowCamera>().Init(p.transform);
+            f.GetComponent<FollowCamera>().Init(character.transform);
+        }
+
+        private void Start()
+        {
+            nextLevel.Construct(character.GetComponent<Player>(), enemyToDefeat);
+            gameHud.SetStatsText($"0/{enemyToDefeat}");
         }
     }
 }

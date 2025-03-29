@@ -9,9 +9,18 @@ namespace Assets.Game.Code.Infrastracture
         [SerializeField]
         private string nextLevel;
 
+        private Player player;
+        private int enemyToDefeat;
+
+        public void Construct(Player player, int enemyToDefeat)
+        {
+            this.player = player;
+            this.enemyToDefeat = enemyToDefeat;
+        }
+
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.CompareTag("Player"))
+            if (collision.CompareTag("Player") && player.DefeatEnemy >= enemyToDefeat)
             {
                 collision.GetComponent<Player>().Fade.FadeIn(() =>
                 {

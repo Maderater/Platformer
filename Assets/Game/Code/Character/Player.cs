@@ -23,6 +23,7 @@ namespace Assets.Game.Code.Character
         public bool IsInTutorial { get; set; }
 
         public FadeInOut Fade { get; private set; }
+        public int DefeatEnemy { get; private set; }
 
         public void Init(FadeInOut fade)
         {
@@ -85,6 +86,8 @@ namespace Assets.Game.Code.Character
             Collider2D collider = Physics2D.OverlapCircle(hitPoint.position, 0.6f, hittableLayer);
             if (collider)
             {
+                DefeatEnemy += 1;
+
                 collider.GetComponent<IDieble>().Die();
             }
         }
