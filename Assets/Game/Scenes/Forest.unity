@@ -16913,6 +16913,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NextLevel
       objectReference: {fileID: 0}
+    - target: {fileID: 3723546964207054535, guid: 2abca8bc9d0b1f343af081d081fa1887, type: 3}
+      propertyPath: nextLevel
+      value: MainMenu
+      objectReference: {fileID: 0}
     - target: {fileID: 8237831876215731121, guid: 2abca8bc9d0b1f343af081d081fa1887, type: 3}
       propertyPath: m_LocalPosition.x
       value: 204.26
