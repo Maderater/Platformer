@@ -8,9 +8,19 @@ namespace Assets.Game.Code.UI
         [SerializeField]
         private TextMeshProUGUI statsText;
 
-        public void SetStatsText(string text)
+        private int? maxEnemys = 0;
+
+        public void SetStatsText(int current, int? max)
         {
-            statsText.text = text;
+            if (max == null)
+            {
+                statsText.text = $"{current}/{maxEnemys}";
+            }
+            else
+            {
+                statsText.text = $"{current}/{max}";
+                maxEnemys = max;
+            }
         }
     }
 }

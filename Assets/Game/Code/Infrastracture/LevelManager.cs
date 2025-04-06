@@ -35,7 +35,7 @@ namespace Assets.Game.Code.Infrastracture
             fade = g.GetComponent<FadeInOut>();
 
             character = Instantiate(player, playerPoint.position, Quaternion.identity);
-            character.GetComponent<Player>().Init(fade);
+            character.GetComponent<Player>().Init(fade, gameHud);
 
             GameObject f = Instantiate(followCamera, playerPoint.position, Quaternion.identity);
             f.GetComponent<FollowCamera>().Init(character.transform);
@@ -44,7 +44,7 @@ namespace Assets.Game.Code.Infrastracture
         private void Start()
         {
             nextLevel.Construct(character.GetComponent<Player>(), enemyToDefeat);
-            gameHud.SetStatsText($"0/{enemyToDefeat}");
+            gameHud.SetStatsText(0, enemyToDefeat);
         }
     }
 }

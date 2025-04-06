@@ -19,15 +19,17 @@ namespace Assets.Game.Code.Character
         private Animator animator;
 
         private bool isAlive = true;
+        private GameHud gameHud;
 
         public bool IsInTutorial { get; set; }
 
         public FadeInOut Fade { get; private set; }
         public int DefeatEnemy { get; private set; }
 
-        public void Init(FadeInOut fade)
+        public void Init(FadeInOut fade, GameHud gameHud)
         {
             Fade = fade;
+            this.gameHud = gameHud;
         }
 
         private void Awake()
@@ -87,6 +89,7 @@ namespace Assets.Game.Code.Character
             if (collider)
             {
                 DefeatEnemy += 1;
+                gameHud.SetStatsText(DefeatEnemy, null);
 
                 collider.GetComponent<IDieble>().Die();
             }
