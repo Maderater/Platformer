@@ -2,6 +2,7 @@ using Assets.Game.Code.Character;
 using Assets.Game.Code.Effects;
 using Assets.Game.Code.UI;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Assets.Game.Code.Infrastracture
 {
@@ -45,6 +46,17 @@ namespace Assets.Game.Code.Infrastracture
         {
             nextLevel.Construct(character.GetComponent<Player>(), enemyToDefeat);
             gameHud.SetStatsText(0, enemyToDefeat);
+        }
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                fade.FadeIn(() =>
+                {
+                    SceneManager.LoadScene("MainMenu");
+                });
+            }
         }
     }
 }
