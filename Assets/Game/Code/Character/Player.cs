@@ -107,7 +107,7 @@ namespace Assets.Game.Code.Character
 
         private void FirstScene() => Fade.FadeIn(() =>
         {
-            SceneManager.LoadScene(SceneManager.GetSceneByBuildIndex(0).name);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         });
     }
 }
