@@ -1,10 +1,8 @@
-using Assets.Game.Code.AI;
 using Assets.Game.Code.Effects;
 using Assets.Game.Code.Interfaces;
 using Assets.Game.Code.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 namespace Assets.Game.Code.Character
 {
@@ -64,9 +62,11 @@ namespace Assets.Game.Code.Character
             if (!isAlive || IsInTutorial) return;
 
             float horizontal = Input.GetAxis("Horizontal"); // -1 to 1
+            print(horizontal);
             bool jump = Input.GetKeyDown("space");
 
             animator.SetFloat("Movement", Mathf.Abs(horizontal));
+            
 
             characterController.Move(horizontal, jump);
         }
@@ -100,6 +100,7 @@ namespace Assets.Game.Code.Character
             if (IsInTutorial) return;
 
             isAlive = false;
+            animator.ResetTrigger("Attack");
             animator.SetTrigger("Die");
             characterController.VelocityToZero();
             Invoke("FirstScene", 3f);
