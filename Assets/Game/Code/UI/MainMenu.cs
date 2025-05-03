@@ -2,6 +2,8 @@ using Assets.Game.Code.Effects;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using TMPro;
 
 namespace Assets.Game.Code.UI
 {
@@ -13,10 +15,21 @@ namespace Assets.Game.Code.UI
         private CanvasGroup creditsCurtain;
         [Space]
         [SerializeField]
+        private Image toggleTutorialBackground;
+        [SerializeField]
+        private TextMeshProUGUI toggleTutorialText;
+        [SerializeField]
+        private Sprite tutorialOn;
+        [SerializeField]
+        private Sprite tutorialOff;
+        [Space]
+        [SerializeField]
         private string gameScene;
 
         private FadeInOut fade;
         private Coroutine creditsCoroutine;
+
+        public static bool ToggleTutorial = true;
 
         private void Awake()
         {
@@ -25,6 +38,8 @@ namespace Assets.Game.Code.UI
 
             creditsCurtain.alpha = 0;
             creditsCurtain.blocksRaycasts = false;
+
+            TutorialButtonUpdate();
         }
 
         public void Play()
@@ -54,6 +69,27 @@ namespace Assets.Game.Code.UI
                 StopCoroutine(creditsCoroutine);
 
             creditsCoroutine = StartCoroutine(CreditsHideCoroutine());
+        }
+
+        public void TutorialToggle()
+        {
+            ToggleTutorial = !ToggleTutorial;
+
+            TutorialButtonUpdate();
+        }
+
+        private void TutorialButtonUpdate()
+        {
+            if (ToggleTutorial)
+            {
+                toggleTutorialBackground.sprite = tutorialOn;
+                toggleTutorialText.text = "Tutorial ON";
+            }
+            else
+            {
+                toggleTutorialBackground.sprite = tutorialOff;
+                toggleTutorialText.text = "Tutorial OFF";
+            }
         }
 
         private IEnumerator CreditsShowCoroutine()
