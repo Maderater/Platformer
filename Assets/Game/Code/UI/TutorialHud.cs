@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using TMPro;
 using System;
+using Assets.Game.Code.Character;
 
 namespace Assets.Game.Code.UI
 {
@@ -13,8 +14,6 @@ namespace Assets.Game.Code.UI
         private CanvasGroup canvasGroup;
 
         private Coroutine appearCoroutine, acceptCoroutine;
-
-        public event Action OnTutorialAccept;
 
         public static TutorialHud Instance;
 
@@ -51,7 +50,7 @@ namespace Assets.Game.Code.UI
                 StopCoroutine(acceptCoroutine);
             }
 
-            OnTutorialAccept?.Invoke();
+            Player.IsInTutorial = false;
             acceptCoroutine = StartCoroutine(AcceptCoroutine());
         }
 

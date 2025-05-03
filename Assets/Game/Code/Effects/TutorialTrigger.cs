@@ -11,7 +11,7 @@ public class TutorialTrigger : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            collision.GetComponent<Player>().IsInTutorial = true;
+            Player.IsInTutorial = true;
             collision.GetComponent<Assets.Game.Code.Character.CharacterController>().VelocityToZero();
             collision.GetComponent<Animator>().SetFloat("Movement", 0);
 

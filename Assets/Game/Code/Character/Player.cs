@@ -19,7 +19,7 @@ namespace Assets.Game.Code.Character
         private bool isAlive = true;
         private GameHud gameHud;
 
-        public bool IsInTutorial { get; set; }
+        public static bool IsInTutorial;
 
         public FadeInOut Fade { get; private set; }
         public int DefeatEnemy { get; private set; }
@@ -34,11 +34,6 @@ namespace Assets.Game.Code.Character
         {
             characterController = GetComponent<CharacterController>();
             animator = GetComponent<Animator>();
-
-            TutorialHud.Instance.OnTutorialAccept += () =>
-            {
-                IsInTutorial = false;
-            };
         }
 
         private void Update()
@@ -62,7 +57,6 @@ namespace Assets.Game.Code.Character
             if (!isAlive || IsInTutorial) return;
 
             float horizontal = Input.GetAxis("Horizontal"); // -1 to 1
-            print(horizontal);
             bool jump = Input.GetKeyDown("space");
 
             animator.SetFloat("Movement", Mathf.Abs(horizontal));
